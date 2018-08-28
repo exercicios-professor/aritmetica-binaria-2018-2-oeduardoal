@@ -128,26 +128,71 @@ public class Janela extends javax.swing.JDialog {
 
                 sum = v1 + v2 + aux;
 
-                if( sum == 0 )
-                {
+                if( sum == 0 ){
                     resultado = "0" + resultado;
+                    if( aux == 1 ) aux = 0;
                 }
                 if( sum == 1 )
                 {
                     resultado = "1" + resultado;
+                    if( aux == 1 ) aux = 0;
+                }
+                if( sum == 2 ){
+                    resultado = "0" + resultado;
                     aux = 1;
                 }
-                if( sum >= 2 ){
+                if( sum == 3 ){
                     resultado = "1" + resultado;
                     aux = 1;
                 }
             }
 
+            if( aux == 1 ) resultado = "1" + resultado;
+
             this.saida.setText(resultado);
             System.out.println(resultado);
 
         } else {
-            System.out.println("SUBTRAÇÃO");
+
+            String valor_1 = this.valor1.getText();
+            String valor_2 = this.valor2.getText();
+            String resultado = "";
+
+            int N = valor_1.length();
+            int aux = 0;
+            int sum = 0;
+
+            for (int  i = N - 1; i >= 0 ; i--){
+
+                int v1 = Character.getNumericValue(valor_1.charAt(i));
+                int v2 = Character.getNumericValue(valor_2.charAt(i));
+
+                sum = v1 + v2 + aux;
+
+                if( sum == 0 ){
+                    resultado = "0" + resultado;
+                    if( aux == 1 ) aux = 0;
+                }
+                if( sum == 1 )
+                {
+                    resultado = "1" + resultado;
+                    if( aux == 1 ) aux = 0;
+                }
+                if( sum == 2 ){
+                    resultado = "0" + resultado;
+                    aux = 1;
+                }
+                if( sum == 3 ){
+                    resultado = "1" + resultado;
+                    aux = 1;
+                }
+            }
+
+            if( aux == 1 ) resultado = "1" + resultado;
+
+            this.saida.setText(resultado);
+            System.out.println(resultado);
+
         }
     }//GEN-LAST:event_enterActionPerformed
 
