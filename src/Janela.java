@@ -111,7 +111,7 @@ public class Janela extends javax.swing.JDialog {
     }//GEN-LAST:event_saidaActionPerformed
 
     private void enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterActionPerformed
-        if (this.opcoes.getSelectedIndex() == 0) {
+        if (this.opcoes.getSelectedIndex() == 1) {
 
             String valor_1 = this.valor1.getText();
             String valor_2 = this.valor2.getText();
@@ -158,37 +158,51 @@ public class Janela extends javax.swing.JDialog {
             String valor_2 = this.valor2.getText();
             String resultado = "";
 
+            valor_1 = "1110";
+            valor_2 = "1111";
+
+
             int N = valor_1.length();
             int aux = 0;
             int sum = 0;
 
             for (int  i = N - 1; i >= 0 ; i--){
+                System.out.println( "I: " + i );
 
                 int v1 = Character.getNumericValue(valor_1.charAt(i));
                 int v2 = Character.getNumericValue(valor_2.charAt(i));
 
-                sum = v1 + v2 + aux;
+                sum = v1 - v2 - aux;
 
-                if( sum == 0 ){
-                    resultado = "0" + resultado;
-                    if( aux == 1 ) aux = 0;
-                }
                 if( sum == 1 )
                 {
                     resultado = "1" + resultado;
-                    if( aux == 1 ) aux = 0;
                 }
-                if( sum == 2 ){
+
+                if( sum == 0 )
+                {
                     resultado = "0" + resultado;
-                    aux = 1;
                 }
-                if( sum == 3 ){
-                    resultado = "1" + resultado;
-                    aux = 1;
+
+                if( sum == -1 )
+                {
+
+                    System.out.println( "To diminuindo " + valor_1.charAt(i) +  " - " + valor_2.charAt(i) );
+
+                    if( i > 0 && Character.getNumericValue(valor_1.charAt(i-1)) == 1 ){
+
+                        valor_1 = valor_1.substring(0, 1) + '_' + valor_1.substring(1);
+                        System.out.println( "edu " + valor_1 );
+
+                    }else{
+                        int vaux = i;
+                        int naux = 0;
+                    }
+
+
                 }
             }
 
-            if( aux == 1 ) resultado = "1" + resultado;
 
             this.saida.setText(resultado);
             System.out.println(resultado);
