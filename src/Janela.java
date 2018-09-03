@@ -111,7 +111,7 @@ public class Janela extends javax.swing.JDialog {
     }//GEN-LAST:event_saidaActionPerformed
 
     private void enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterActionPerformed
-        if (this.opcoes.getSelectedIndex() == 1) {
+        if (this.opcoes.getSelectedIndex() == 0) {
 
             String valor_1 = this.valor1.getText();
             String valor_2 = this.valor2.getText();
@@ -158,19 +158,24 @@ public class Janela extends javax.swing.JDialog {
             String valor_2 = this.valor2.getText();
             String resultado = "";
 
-            valor_1 = "1110";
-            valor_2 = "1111";
+//            valor_1 = "1110";
+//            valor_2 = "1111";
 
+            System.out.println( valor_1 + " - " + valor_2 );
 
             int N = valor_1.length();
             int aux = 0;
             int sum = 0;
 
+            StringBuilder valor_1_sb = new StringBuilder(valor_1);
+            StringBuilder valor_2_sb = new StringBuilder(valor_2);
+
+
             for (int  i = N - 1; i >= 0 ; i--){
                 System.out.println( "I: " + i );
 
-                int v1 = Character.getNumericValue(valor_1.charAt(i));
-                int v2 = Character.getNumericValue(valor_2.charAt(i));
+                int v1 = Character.getNumericValue(valor_1_sb.charAt(i));
+                int v2 = Character.getNumericValue(valor_2_sb.charAt(i));
 
                 sum = v1 - v2 - aux;
 
@@ -187,18 +192,18 @@ public class Janela extends javax.swing.JDialog {
                 if( sum == -1 )
                 {
 
-                    System.out.println( "To diminuindo " + valor_1.charAt(i) +  " - " + valor_2.charAt(i) );
-
-                    if( i > 0 && Character.getNumericValue(valor_1.charAt(i-1)) == 1 ){
-
-                        valor_1 = valor_1.substring(0, 1) + '_' + valor_1.substring(1);
-                        System.out.println( "edu " + valor_1 );
-
-                    }else{
-                        int vaux = i;
-                        int naux = 0;
+                    for( int a = i; a > 1; a-- ){
+                        if( valor_1_sb.charAt(a-1) == '1' ){
+                            valor_1_sb.setCharAt(a-1, '0');
+                            break;
+                        }else{
+                            valor_1_sb.setCharAt(a-1, '0');
+                            valor_1_sb.setCharAt(a, '1');
+                            a++;
+                        }
                     }
 
+                    resultado = "1" + resultado;
 
                 }
             }
